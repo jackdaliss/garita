@@ -1,11 +1,13 @@
+
+
 ALERTS->GARITA
 
 -verificar si hay conexion a internet antes de validar 
 el codigo, al presionar el boton continuar, si no tiene conexion,
 deberia mostrar un mensaje que diga, no tienes conexion a internet 
 
--Agregar un titulo a ambas aplicaciones, justo bajo la campana de inicio, donde 
-solicita el codigo
+-Agregar un titulo a ambas aplicaciones, justo bajo la campana de inicio, 
+donde solicita el codigo
 
 -en la pantalla donde muestra por fin el codigo , donde dice Bienvenido, 
 es necesario que se separe las imagenes superiores de la parte central

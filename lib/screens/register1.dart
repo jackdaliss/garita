@@ -31,14 +31,19 @@ class _Register1State extends State<Register1> {
   }
 
   Widget build(BuildContext context) {
-    return Scaffold(
-      resizeToAvoidBottomPadding: false,
-      /*appBar: AppBar(
-        elevation: 0.0,
+    return WillPopScope(
+      onWillPop: () {
+        return new Future(() => false);
+      },
+      child: Scaffold(
+        resizeToAvoidBottomPadding: false,
+        /*appBar: AppBar(
+          elevation: 0.0,
+          backgroundColor: MyColors.white_grey,
+        ),*/
+        body: SafeArea(child: body(context)),
         backgroundColor: MyColors.white_grey,
-      ),*/
-      body: SafeArea(child: body(context)),
-      backgroundColor: MyColors.white_grey,
+      ),
     );
   }
 

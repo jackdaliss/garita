@@ -11,17 +11,22 @@ final localDb = LocalDataBase();
 class Register2 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Registro',
-      home: Scaffold(
-        /*appBar: AppBar(
+    return WillPopScope(
+      onWillPop: () {
+        return new Future(() => false);
+      },
+      child: MaterialApp(
+        title: 'Registro',
+        home: Scaffold(
+          /*appBar: AppBar(
+            backgroundColor: MyColors.white_grey,
+            elevation: 0.0,
+          ),*/
+          body: SafeArea(
+            child: body(context),
+          ),
           backgroundColor: MyColors.white_grey,
-          elevation: 0.0,
-        ),*/
-        body: SafeArea(
-          child: body(context),
         ),
-        backgroundColor: MyColors.white_grey,
       ),
     );
   }

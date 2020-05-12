@@ -31,22 +31,27 @@ class _ListCodesState extends State<ListCodes> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        elevation: 0.0,
-        backgroundColor: MyColors.white_grey,
-        title: Center(
-            child: Text(
-          'Alertas ' +
-              ((global.garita.nombreGarita.length != null)
-                  ? global.garita.nombreGarita
-                  : SizedBox.shrink()),
-          style: TextStyle(color: MyColors.grey30),
-        )),
-        automaticallyImplyLeading: false,
+    return WillPopScope(
+      onWillPop: () {
+        return new Future(() => false);
+      },
+      child: Scaffold(
+        appBar: AppBar(
+          elevation: 0.0,
+          backgroundColor: MyColors.white_grey,
+          title: Center(
+              child: Text(
+            'Alertas ' +
+                ((global.garita.nombreGarita.length != null)
+                    ? global.garita.nombreGarita
+                    : SizedBox.shrink()),
+            style: TextStyle(color: MyColors.grey30),
+          )),
+          automaticallyImplyLeading: false,
+        ),
+        body: _body(),
+        backgroundColor: MyColors.white,
       ),
-      body: _body(),
-      backgroundColor: MyColors.white,
     );
   }
 

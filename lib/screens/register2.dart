@@ -14,61 +14,63 @@ class Register2 extends StatelessWidget {
     return MaterialApp(
       title: 'Registro',
       home: Scaffold(
-        appBar: AppBar(
+        /*appBar: AppBar(
           backgroundColor: MyColors.white_grey,
           elevation: 0.0,
+        ),*/
+        body: SafeArea(
+          child: body(context),
         ),
-        body: _body(context),
         backgroundColor: MyColors.white_grey,
       ),
     );
   }
 
-  _body(BuildContext context) {
+  body(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: <Widget>[
+        Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: <Widget>[
+            SizedBox(
+              width: 30.0,
+            ),
+            Container(
+              height: 30.0,
+              child: Image(image: AssetImage("assets/images/directo.png")),
+            )
+          ],
+        ),
+        SizedBox(
+          height: 15.0,
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: <Widget>[
+            Container(
+              child: Container(
+                width: 40.0,
+                height: 5.0,
+                child: SizedBox(
+                  width: 20.0,
+                ),
+              ),
+            ),
+            Container(
+              height: 50.0,
+              child: Image(image: AssetImage("assets/images/reloj.png")),
+            )
+          ],
+        ),
+        SizedBox(
+          height: 50.0,
+        ),
         Expanded(
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: <Widget>[
-                  SizedBox(
-                    width: 30.0,
-                  ),
-                  Container(
-                    height: 40.0,
-                    child:
-                        Image(image: AssetImage("assets/images/directo.png")),
-                  )
-                ],
-              ),
-              SizedBox(
-                height: 30.0,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: <Widget>[
-                  Container(
-                    child: Container(
-                      width: 50.0,
-                      height: 15.0,
-                      child: SizedBox(
-                        width: 20.0,
-                      ),
-                    ),
-                  ),
-                  Container(
-                    height: 70.0,
-                    child: Image(image: AssetImage("assets/images/reloj.png")),
-                  )
-                ],
-              ),
-              SizedBox(
-                height: 50.0,
-              ),
               Text(
                 'BIENVENIDO!',
                 style: TextStyle(

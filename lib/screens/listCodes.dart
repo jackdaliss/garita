@@ -38,14 +38,14 @@ class _ListCodesState extends State<ListCodes> {
       child: Scaffold(
         appBar: AppBar(
           elevation: 0.0,
-          backgroundColor: MyColors.white_grey,
+          backgroundColor: MyColors.sapphire,
           title: Center(
               child: Text(
             'Alertas ' +
                 ((global.garita.nombreGarita.length != null)
                     ? global.garita.nombreGarita
                     : SizedBox.shrink()),
-            style: TextStyle(color: MyColors.grey30),
+            style: TextStyle(color: MyColors.white),
           )),
           automaticallyImplyLeading: false,
         ),
@@ -68,39 +68,44 @@ class _ListCodesState extends State<ListCodes> {
                 )
               : SizedBox.shrink(),
         ),
-        TextField(
-          controller: _controller,
-          decoration: InputDecoration(
-              hintText: 'FILTRAR',
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.all(
-                  Radius.circular(12),
+        Container(
+          margin: EdgeInsets.all(5.0),
+          child: TextField(
+            
+            controller: _controller,
+            decoration: InputDecoration(
+              
+                hintText: 'Buscar',
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(22),
+                  ),
+                  borderSide: BorderSide(width: 1, color: MyColors.sapphire),
                 ),
-                borderSide: BorderSide(width: 1, color: MyColors.sapphire),
-              ),
-              focusedBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.all(
-                  Radius.circular(12),
-                ),
-                borderSide: BorderSide(width: 1, color: MyColors.grey60),
-              )),
-          style: TextStyle(
-              fontSize: 18.0,
-              fontWeight: FontWeight.bold,
-              color: MyColors.grey60),
-          onChanged: (value) {
-            setState(
-              () {
-                global.lista_alertas_filtro = global.lista_alertas
-                    .where(
-                      (string) => string.codigo.toLowerCase().contains(
-                            value.toLowerCase(),
-                          ),
-                    )
-                    .toList();
-              },
-            );
-          },
+                focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(22),
+                  ),
+                  borderSide: BorderSide(width: 1, color: MyColors.grey60),
+                )),
+            style: TextStyle(
+                fontSize: 18.0,
+                fontWeight: FontWeight.bold,
+                color: MyColors.grey60),
+            onChanged: (value) {
+              setState(
+                () {
+                  global.lista_alertas_filtro = global.lista_alertas
+                      .where(
+                        (string) => string.codigo.toLowerCase().contains(
+                              value.toLowerCase(),
+                            ),
+                      )
+                      .toList();
+                },
+              );
+            },
+          ),
         ),
       ],
     );

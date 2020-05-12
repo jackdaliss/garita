@@ -33,11 +33,11 @@ class _Register1State extends State<Register1> {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomPadding: false,
-      appBar: AppBar(
+      /*appBar: AppBar(
         elevation: 0.0,
         backgroundColor: MyColors.white_grey,
-      ),
-      body: body(context),
+      ),*/
+      body: SafeArea(child: body(context)),
       backgroundColor: MyColors.white_grey,
     );
   }
@@ -56,7 +56,7 @@ class _Register1State extends State<Register1> {
                     Container(
                       child: Container(
                         width: 50.0,
-                        height: 60.0,
+                        //height: 10.0,
                         child: SizedBox(
                           width: 20.0,
                         ),
@@ -99,7 +99,18 @@ class _Register1State extends State<Register1> {
                   ),
                 ),
                 SizedBox(
-                  height: 25.0,
+                  height: 10.0,
+                ),
+                Text(
+                  global.app_name,
+                  style: TextStyle(
+                    color: MyColors.sapphire,
+                    fontSize: TamanioTexto.logo,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                SizedBox(
+                  height: 40.0,
                 ),
                 Text(
                   '¿Cual es tu código?',
@@ -140,7 +151,6 @@ class _Register1State extends State<Register1> {
                       controller: myController,
                       decoration: InputDecoration(
                         filled: true,
-                     
                         fillColor: MyColors.white,
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.all(
@@ -156,7 +166,6 @@ class _Register1State extends State<Register1> {
                           borderSide:
                               BorderSide(width: 1, color: MyColors.grey60),
                         ),
-
                         hintText: 'Código',
                       ),
                       textAlign: TextAlign.center,
@@ -173,36 +182,36 @@ class _Register1State extends State<Register1> {
         Align(
           alignment: Alignment.bottomCenter,
           child: Builder(
-              builder: (context) => Center(
-                child: Container(
-                  width: Posiciones.obtenerAnchoBotonInferior(context),
-                  height: 50.0,
-                  child: FlatButton(
-                    color: MyColors.sapphire,
-                    onPressed: () {
-                      setState(
-                        () {
-                          mostrarMensaje = false;
-                        },
-                      );
+            builder: (context) => Center(
+              child: Container(
+                width: Posiciones.obtenerAnchoBotonInferior(context),
+                height: 50.0,
+                child: FlatButton(
+                  color: MyColors.sapphire,
+                  onPressed: () {
+                    setState(
+                      () {
+                        mostrarMensaje = false;
+                      },
+                    );
 
-                      _verificarRegistro(context);
-
-                    },
-                    child: Text(
-                      'CONTINUAR',
-                      style: TextStyle(letterSpacing: 1.5, color: MyColors.white
-                          ),
-                    ),
-                    shape: RoundedRectangleBorder(
-                        borderRadius: new BorderRadius.circular(22.0),
-                        side: BorderSide(color: MyColors.white)),
+                    _verificarRegistro(context);
+                  },
+                  child: Text(
+                    'CONTINUAR',
+                    style: TextStyle(letterSpacing: 1.5, color: MyColors.white),
                   ),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: new BorderRadius.circular(22.0),
+                      side: BorderSide(color: MyColors.white)),
                 ),
               ),
             ),
+          ),
         ),
-        SizedBox(height: Posiciones.separacion_inferior_boton,)
+        SizedBox(
+          height: Posiciones.separacion_inferior_boton,
+        )
       ],
     );
   }
@@ -305,7 +314,6 @@ class _Register1State extends State<Register1> {
                       controller: myController,
                       decoration: InputDecoration(
                         filled: true,
-                       
                         fillColor: MyColors.white,
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.all(
@@ -321,7 +329,6 @@ class _Register1State extends State<Register1> {
                           borderSide:
                               BorderSide(width: 1, color: MyColors.grey60),
                         ),
-
                         hintText: 'Código',
                       ),
                       textAlign: TextAlign.center,
@@ -351,13 +358,11 @@ class _Register1State extends State<Register1> {
                       );
 
                       _verificarRegistro(context);
-
-
                     },
                     child: Text(
                       'CONTINUAR',
-                      style: TextStyle(letterSpacing: 1.5, color: MyColors.white
-                          ),
+                      style:
+                          TextStyle(letterSpacing: 1.5, color: MyColors.white),
                     ),
                     shape: RoundedRectangleBorder(
                         borderRadius: new BorderRadius.circular(22.0),
@@ -462,5 +467,4 @@ class _Register1State extends State<Register1> {
       MaterialPageRoute(builder: (context) => Register2()),
     );
   }
-
 }

@@ -80,6 +80,7 @@ class _ListCodesState extends State<ListCodes> {
             decoration: InputDecoration(
               
                 hintText: 'Buscar',
+                contentPadding: EdgeInsets.only(left:20),
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.all(
                     Radius.circular(22),
@@ -93,7 +94,7 @@ class _ListCodesState extends State<ListCodes> {
                   borderSide: BorderSide(width: 1, color: MyColors.grey60),
                 )),
             style: TextStyle(
-                fontSize: 18.0,
+                fontSize: TamanioTexto.texto_campo_busqueda,
                 fontWeight: FontWeight.bold,
                 color: MyColors.grey60),
             onChanged: (value) {

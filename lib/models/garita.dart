@@ -91,6 +91,7 @@ class TamanioTexto{
   static double titulo=22.0;
   static double subtitulo=18.0;
   static double texto_pequenio=15.0;
+  static double texto_campo_busqueda=20.0;
 }
 
 class Posiciones{

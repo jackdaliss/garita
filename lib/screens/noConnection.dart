@@ -5,6 +5,7 @@ import 'package:flushbar/flushbar.dart';
 import 'package:garita/library/variables_globales.dart' as global;
 import 'package:flutter/material.dart';
 import 'package:garita/models/garita.dart';
+import 'package:garita/utils/methos.dart';
 import 'package:progress_dialog/progress_dialog.dart';
 import 'package:garita/main.dart';
 import 'package:garita/screens/register1.dart';
@@ -99,8 +100,7 @@ bool hasConnection = false;
   }
 
   _testConnection(context) async {
-    pr = new ProgressDialog(context,
-        type: ProgressDialogType.Normal, isDismissible: true, showLogs: false);
+    pr = Methods.getPopUp(context);
     await pr.show();
 
     hasConnection = await DataConnectionChecker().hasConnection;
@@ -115,33 +115,19 @@ bool hasConnection = false;
       
     } else {
       pr.hide();
-      _mostrarMensaje("No tienes conexión a internet.",context);
+      _showMensaje("No tienes conexión a internet.",context);
       //print("no conexion");
     }
   }
 
 
 
-  _mostrarMensaje(String _mensaje, context) {
+  _showMensaje(String _mensaje, context) {
     setState(() {
       global.mensaje = _mensaje;
       mostrarMensaje = true;
     });
-
-    return Flushbar(
-      flushbarPosition: FlushbarPosition.TOP,
-      flushbarStyle: FlushbarStyle.GROUNDED,
-      title: "Alerta!",
-      messageText: Text(
-        _mensaje,
-        style: TextStyle(
-            fontSize: 18.0,
-            color: MyColors.moccasin,
-            fontFamily: "ShadowsIntoLightTwo"),
-      ),
-      backgroundColor: MyColors.sapphire,
-      duration: Duration(seconds: 3),
-    )..show(context);
+    return Methods.getMessage(_mensaje, context);
   }
 
 

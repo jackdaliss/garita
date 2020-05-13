@@ -12,7 +12,7 @@ class Register2 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
-      onWillPop: () {
+    onWillPop:  () {
         return new Future(() => false);
       },
       child: MaterialApp(
@@ -35,6 +35,9 @@ class Register2 extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: <Widget>[
+        SizedBox(
+              height: 30.0,
+            ),
         Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[

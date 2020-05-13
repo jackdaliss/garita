@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:garita/models/garita.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:garita/library/variables_globales.dart' as global;
@@ -71,7 +72,10 @@ class _ListCodesState extends State<ListCodes> {
         Container(
           margin: EdgeInsets.all(5.0),
           child: TextField(
-            
+            keyboardType: TextInputType.number,
+            inputFormatters: <TextInputFormatter>[
+                        WhitelistingTextInputFormatter.digitsOnly
+                      ],
             controller: _controller,
             decoration: InputDecoration(
               

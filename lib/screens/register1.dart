@@ -1,9 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:garita/models/garita.dart';
 import 'package:garita/screens/register2.dart';
 import 'package:garita/utils/cloudStoreDB.dart';
+import 'package:garita/utils/methos.dart';
 import 'package:progress_dialog/progress_dialog.dart';
 import 'package:garita/library/variables_globales.dart' as global;
 
@@ -36,7 +38,10 @@ class _Register1State extends State<Register1> {
         return new Future(() => false);
       },
       child: Scaffold(
-        resizeToAvoidBottomPadding: false,
+        /*resizeToAvoidBottomPadding: true, Hace que la pantalla se mueva hacia arriba y 
+        aparexca en ese espacio el teclado, permitiendo 
+        asi que el teclado no obstruya los objetos*/
+        resizeToAvoidBottomPadding: true,
         /*appBar: AppBar(
           elevation: 0.0,
           backgroundColor: MyColors.white_grey,
@@ -55,13 +60,16 @@ class _Register1State extends State<Register1> {
           child: SingleChildScrollView(
             child: Column(
               children: <Widget>[
+                SizedBox(
+                  height: 30.0,
+                ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: <Widget>[
                     Container(
                       child: Container(
                         width: 50.0,
-                        //height: 10.0,
+                        height: 20.0,
                         child: SizedBox(
                           width: 20.0,
                         ),
@@ -115,7 +123,7 @@ class _Register1State extends State<Register1> {
                   ),
                 ),
                 SizedBox(
-                  height: 40.0,
+                  height: 55.0,
                 ),
                 Text(
                   '¿Cual es tu código?',
@@ -385,9 +393,13 @@ class _Register1State extends State<Register1> {
     );
   }
 
+  
+
   _verificarRegistro(context) async {
-    pr = new ProgressDialog(context,
-        type: ProgressDialogType.Normal, isDismissible: true, showLogs: false);
+    pr =Methods.getPopUp(context);
+
+
+
     await pr.show();
     try {
       if (myController.text.length > 0) {
@@ -420,17 +432,17 @@ class _Register1State extends State<Register1> {
                 _continuar(context);
               } else {
                 pr.hide();
-                _mostrarMensaje('El codigo ya esta siendo usado.', context);
+                _showMessage('El codigo ya esta siendo usado.', context);
               }
             } else {
               pr.hide();
-              _mostrarMensaje('El código no existe.', context);
+              _showMessage('El código no existe.', context);
             }
           },
         );
       } else {
         pr.hide();
-        _mostrarMensaje('El campo esta vacio.', context);
+        _showMessage('El campo esta vacio.', context);
       }
     } catch (e) {
       pr.hide();
@@ -438,25 +450,15 @@ class _Register1State extends State<Register1> {
     }
   }
 
-  _mostrarMensaje(String _mensaje, context) {
-    setState(
-      () {
-        global.mensaje = _mensaje;
-        mostrarMensaje = true;
-      },
-    );
 
-    Scaffold.of(context).showSnackBar(
-      SnackBar(
-        backgroundColor: MyColors.moccasin,
-        content: Text(
-          (global.mensaje != null) ? global.mensaje : '',
-          style: TextStyle(color: MyColors.grey30),
-        ),
-        duration: Duration(seconds: 3),
-      ),
-    );
+  _showMessage(String _mensaje, context) {
+    setState(() {
+      global.mensaje = _mensaje;
+      mostrarMensaje = true;
+    });
+    return Methods.getMessage(_mensaje, context);
   }
+
 
   _error() {
     setState(
@@ -472,4 +474,9 @@ class _Register1State extends State<Register1> {
       MaterialPageRoute(builder: (context) => Register2()),
     );
   }
+
+
+
+
+  
 }

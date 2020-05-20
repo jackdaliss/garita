@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:garita/models/garita.dart';
 import 'package:garita/screens/register2.dart';
-import 'package:garita/utils/cloudStoreDB.dart';
+
 import 'package:garita/utils/methos.dart';
 import 'package:progress_dialog/progress_dialog.dart';
 import 'package:garita/library/variables_globales.dart' as global;
@@ -24,7 +24,7 @@ class _Register1State extends State<Register1> {
 
   ProgressDialog pr;
 
-  CSDB csdb = new CSDB();
+  
 
   @override
   void dispose() {

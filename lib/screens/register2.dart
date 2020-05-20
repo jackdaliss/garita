@@ -1,27 +1,21 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:garita/library/variables_globales.dart' as global;
 import 'package:garita/models/garita.dart';
 import 'package:garita/screens/listCodes.dart';
 import 'package:garita/utils/localStorageDB.dart';
 
-final db = Firestore.instance;
 final localDb = LocalDataBase();
 
 class Register2 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
-    onWillPop:  () {
+      onWillPop: () {
         return new Future(() => false);
       },
       child: MaterialApp(
         title: 'Registro',
         home: Scaffold(
-          /*appBar: AppBar(
-            backgroundColor: MyColors.white_grey,
-            elevation: 0.0,
-          ),*/
           body: SafeArea(
             child: body(context),
           ),
@@ -36,8 +30,8 @@ class Register2 extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: <Widget>[
         SizedBox(
-              height: 30.0,
-            ),
+          height: 30.0,
+        ),
         Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
@@ -125,15 +119,16 @@ class Register2 extends StatelessWidget {
               child: FlatButton(
                 color: MyColors.sapphire,
                 onPressed: () {
-                  _finalizar(context);
+                  _end(context);
                 },
                 child: Text(
                   'FINALIZAR',
                   style: TextStyle(letterSpacing: 1.5, color: MyColors.white),
                 ),
                 shape: RoundedRectangleBorder(
-                    borderRadius: new BorderRadius.circular(22.0),
-                    side: BorderSide(color: MyColors.white)),
+                  borderRadius: new BorderRadius.circular(22.0),
+                  side: BorderSide(color: MyColors.white),
+                ),
               ),
             ),
           ),
@@ -143,27 +138,22 @@ class Register2 extends StatelessWidget {
     );
   }
 
-  _finalizar(context) {
-    //GUARDAR EN CLOUD
-    _guardarDb(Coleccion.registro_garita, Campos.document_id,
-        global.garita.documentId, global.garita.documentId);
-    _guardarDb(Coleccion.registro_garita, Campos.fecha_registro,
-        DateTime.now().toString(), global.garita.documentId);
-    _continuar(context);
+  _end(context) {
 
-    //GUARDAR LOCAL
-    print("***** " +
-        global.garita.codGarita +
-        "  #  " +
-        global.garita.nombreGarita +
-        "  #  " +
-        global.garita.documentId);
+    //GUARDAR EN CLOUD STORE
+    _saveLocalDB(Coleccion.registro_garita, Campos.document_id,
+        global.garita.documentId, global.garita.documentId);
+    _saveLocalDB(Coleccion.registro_garita, Campos.fecha_registro,
+        DateTime.now().toString(), global.garita.documentId);
+    _nextPage(context);
+
+    //GUARDA EN BASE LOCAL
     localDb.save(Campos.cod_garita, global.garita.codGarita);
     localDb.save(Campos.nombre_garita, global.garita.nombreGarita);
     localDb.save(Campos.document_id, global.garita.documentId);
   }
 
-  _guardarDb(
+  _saveLocalDB(
       String collection, String field, String value, String documentId) async {
     await db
         .collection(collection)
@@ -171,7 +161,7 @@ class Register2 extends StatelessWidget {
         .updateData({field: value});
   }
 
-  _continuar(context) {
+  _nextPage(context) {
     Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => ListCodes()),

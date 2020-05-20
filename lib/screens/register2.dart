@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:garita/library/variables_globales.dart' as global;
 import 'package:garita/models/garita.dart';
@@ -5,6 +6,8 @@ import 'package:garita/screens/listCodes.dart';
 import 'package:garita/utils/localStorageDB.dart';
 
 final localDb = LocalDataBase();
+final firestore = Firestore.instance;
+
 
 class Register2 extends StatelessWidget {
   @override
@@ -155,7 +158,7 @@ class Register2 extends StatelessWidget {
 
   _saveLocalDB(
       String collection, String field, String value, String documentId) async {
-    await db
+    await firestore
         .collection(collection)
         .document(documentId)
         .updateData({field: value});

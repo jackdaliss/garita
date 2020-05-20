@@ -5,23 +5,19 @@ import 'package:garita/models/garita.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:garita/library/variables_globales.dart' as global;
 
-//EJEMPLOS DE POP UP
-//https://flutterawesome.com/xustomizable-and-easy-to-use-alert-popup-dialogs-for-flutter/
-
-final db = Firestore.instance;
+final firestore = Firestore.instance;
 
 class ListCodes extends StatefulWidget {
   @override
   _ListCodesState createState() => _ListCodesState();
 }
 
-var _controller = TextEditingController();
+var _editingController = TextEditingController();
 
 class _ListCodesState extends State<ListCodes> {
   @override
   void initState() {
     super.initState();
-
     setState(
       () {
         _onGetNewData();
@@ -74,25 +70,25 @@ class _ListCodesState extends State<ListCodes> {
           child: TextField(
             keyboardType: TextInputType.number,
             inputFormatters: <TextInputFormatter>[
-                        WhitelistingTextInputFormatter.digitsOnly
-                      ],
-            controller: _controller,
+              WhitelistingTextInputFormatter.digitsOnly
+            ],
+            controller: _editingController,
             decoration: InputDecoration(
-              
-                hintText: 'Buscar',
-                contentPadding: EdgeInsets.only(left:20),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(22),
-                  ),
-                  borderSide: BorderSide(width: 1, color: MyColors.sapphire),
+              hintText: 'Buscar',
+              contentPadding: EdgeInsets.only(left: 20),
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.all(
+                  Radius.circular(22),
                 ),
-                focusedBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(22),
-                  ),
-                  borderSide: BorderSide(width: 1, color: MyColors.grey60),
-                )),
+                borderSide: BorderSide(width: 1, color: MyColors.sapphire),
+              ),
+              focusedBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.all(
+                  Radius.circular(22),
+                ),
+                borderSide: BorderSide(width: 1, color: MyColors.grey60),
+              ),
+            ),
             style: TextStyle(
                 fontSize: TamanioTexto.texto_campo_busqueda,
                 fontWeight: FontWeight.bold,
@@ -102,9 +98,9 @@ class _ListCodesState extends State<ListCodes> {
                 () {
                   global.lista_alertas_filtro = global.lista_alertas
                       .where(
-                        (string) => string.codigo.toLowerCase().contains(
-                              value.toLowerCase(),
-                            ),
+                        (string) => string.codigo
+                            .toLowerCase()
+                            .contains(value.toLowerCase()),
                       )
                       .toList();
                 },
@@ -174,7 +170,6 @@ class _ListCodesState extends State<ListCodes> {
           setState(
             () {
               _button(alerta);
-              print(alerta.codigo);
             },
           );
         },
@@ -232,14 +227,14 @@ class _ListCodesState extends State<ListCodes> {
   }
 
   _eliminarAlerta(String documentID) async {
-    await db
+    await firestore
         .collection(Coleccion.registro_garita)
         .document(global.garita.documentId)
         .collection(Coleccion.alerta)
         .document(documentID)
         .delete();
     setState(() {
-      _controller.clear();
+      _editingController.clear();
       global.lista_alertas_filtro = global.lista_alertas;
     });
   }

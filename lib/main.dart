@@ -67,6 +67,8 @@ class Home extends StatelessWidget {
 
   _getStart(context) {
     try {
+
+      //LEE DE LA BASE DE DATOS LOCAL
       localDb.read(Campos.cod_garita).then(
         (data) {
           if (data != null) {

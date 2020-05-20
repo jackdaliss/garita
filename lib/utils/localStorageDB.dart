@@ -1,6 +1,4 @@
 import 'package:shared_preferences/shared_preferences.dart';
-//ARCHIVO  .yaml
-//shared_preferences: ^0.5.6+1
 
 class LocalDataBase {
   Future<String> read(String _keyName) async {
@@ -14,7 +12,6 @@ class LocalDataBase {
     } catch (e) {
       value = null;
     }
-    print('read: $value');
     return value;
   }
 

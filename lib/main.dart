@@ -15,37 +15,34 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: '...',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home:  HomeTemp(),
+      home: Home(),
     );
   }
 }
 
-class HomeTemp extends StatelessWidget {
-
-
-_testConnection(context) async {
-    /*pr = new ProgressDialog(context,
-        type: ProgressDialogType.Normal, isDismissible: true, showLogs: false);
-    await pr.show();*/
-
-    var hasConnection = await DataConnectionChecker().hasConnection.timeout(Duration(seconds: 10));
+class Home extends StatelessWidget {
+  
+  //VERIFICA SI EXISTE CONEXION A INTERNET
+  _testConnection(context) async {
+    var hasConnection = await DataConnectionChecker()
+        .hasConnection
+        .timeout(Duration(seconds: 10));
 
     if (hasConnection) {
-      _obtenerVentanaInicial(context);
-      //Navigator.pop(context);
+      _getStart(context);
     } else {
-       Navigator.push(
-              context, MaterialPageRoute(builder: (context) => NoConnection()));
-
-      
-      //print("no conexion");
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => NoConnection(),
+        ),
+      );
     }
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -68,34 +65,7 @@ _testConnection(context) async {
     );
   }
 
-  //ORIGINAL
-  /*@override
-  Widget build(BuildContext context) {
-    return _getSpash(context);
-  }*/
-
-  /*_getSpash(context) {
-    _obtenerVentanaInicial(context);
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: MyColors.sapphire,
-        elevation: 0.0,
-      ),
-      body: Center(
-        child: FractionallySizedBox(
-          widthFactor: 0.3,
-          heightFactor: 0.3,
-          child: Container(
-            child: Image(image: AssetImage("assets/images/campana.png")),
-          ),
-        ),
-      ),
-      backgroundColor: MyColors.sapphire,
-    );
-  }*/
-
-  _obtenerVentanaInicial(context) {
-    //localDb.save(Campos.cod_garita, null);
+  _getStart(context) {
     try {
       localDb.read(Campos.cod_garita).then(
         (data) {
@@ -108,7 +78,7 @@ _testConnection(context) async {
               ),
             );
 
-            _obtenerDatos();
+            _getData();
           } else {
             Navigator.push(
               context,
@@ -122,7 +92,7 @@ _testConnection(context) async {
     } catch (e) {}
   }
 
-  _obtenerDatos() {
+  _getData() {
     localDb.read(Campos.document_id).then(
       (data) {
         garita.documentId = data;

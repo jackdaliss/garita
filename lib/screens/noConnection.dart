@@ -1,32 +1,22 @@
-
 import 'package:data_connection_checker/data_connection_checker.dart';
-import 'package:flushbar/flushbar.dart';
-
 import 'package:garita/library/variables_globales.dart' as global;
 import 'package:flutter/material.dart';
 import 'package:garita/models/garita.dart';
 import 'package:garita/utils/methos.dart';
 import 'package:progress_dialog/progress_dialog.dart';
 import 'package:garita/main.dart';
-import 'package:garita/screens/register1.dart';
-
-
 
 class NoConnection extends StatefulWidget {
   @override
   _NoConnectionState createState() => _NoConnectionState();
 }
 
-
-
 class _NoConnectionState extends State<NoConnection> {
-
-bool hasConnection = false;
+  bool hasConnection = false;
   ProgressDialog pr;
 
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return Scaffold(
       appBar: AppBar(
         backgroundColor: MyColors.white,
@@ -102,33 +92,26 @@ bool hasConnection = false;
   _testConnection(context) async {
     pr = Methods.getPopUp(context);
     await pr.show();
-
     hasConnection = await DataConnectionChecker().hasConnection;
 
     if (hasConnection) {
       pr.hide();
-      print("conexion");
       Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => Home()),
-    );
-      
+        context,
+        MaterialPageRoute(builder: (context) => Home()),
+      );
     } else {
       pr.hide();
-      _showMensaje("No tienes conexión a internet.",context);
-      //print("no conexion");
+      _showMensaje("No tienes conexión a internet.", context);
     }
   }
 
-
-
   _showMensaje(String _mensaje, context) {
-    setState(() {
-      global.mensaje = _mensaje;
-    },);
+    setState(
+      () {
+        global.mensaje = _mensaje;
+      },
+    );
     return Methods.getMessage(_mensaje, context);
   }
-
-
-
 }

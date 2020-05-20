@@ -1,5 +1,4 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:garita/models/garita.dart';
@@ -197,7 +196,7 @@ class _Register1State extends State<Register1> {
           child: Builder(
             builder: (context) => Center(
               child: Container(
-                width: Posiciones.obtenerAnchoBotonInferior(context),
+                width: Posiciones.getBottomButtonSize(context),
                 height: 50.0,
                 child: FlatButton(
                   color: MyColors.sapphire,
@@ -359,7 +358,7 @@ class _Register1State extends State<Register1> {
             child: Builder(
               builder: (context) => Center(
                 child: Container(
-                  width: Posiciones.obtenerAnchoBotonInferior(context),
+                  width: Posiciones.getBottomButtonSize(context),
                   height: 50.0,
                   child: FlatButton(
                     color: MyColors.sapphire,

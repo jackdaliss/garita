@@ -125,8 +125,7 @@ bool hasConnection = false;
   _showMensaje(String _mensaje, context) {
     setState(() {
       global.mensaje = _mensaje;
-      mostrarMensaje = true;
-    });
+    },);
     return Methods.getMessage(_mensaje, context);
   }
 

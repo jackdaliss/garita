@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:garita/models/garita.dart';
 import 'package:garita/screens/register2.dart';
-
 import 'package:garita/utils/methos.dart';
 import 'package:progress_dialog/progress_dialog.dart';
 import 'package:garita/library/variables_globales.dart' as global;
@@ -13,17 +12,13 @@ class Register1 extends StatefulWidget {
   _Register1State createState() => _Register1State();
 }
 
-final db = Firestore.instance;
+final cloudStore = Firestore.instance;
 String documentId = "";
-
-bool mostrarMensaje = false;
 
 class _Register1State extends State<Register1> {
   final myController = TextEditingController();
 
   ProgressDialog pr;
-
-  
 
   @override
   void dispose() {
@@ -37,15 +32,10 @@ class _Register1State extends State<Register1> {
         return new Future(() => false);
       },
       child: Scaffold(
-        /*resizeToAvoidBottomPadding: true, Hace que la pantalla se mueva hacia arriba y 
-        aparexca en ese espacio el teclado, permitiendo 
-        asi que el teclado no obstruya los objetos*/
         resizeToAvoidBottomPadding: true,
-        /*appBar: AppBar(
-          elevation: 0.0,
-          backgroundColor: MyColors.white_grey,
-        ),*/
-        body: SafeArea(child: body(context)),
+        body: SafeArea(
+          child: body(context),
+        ),
         backgroundColor: MyColors.white_grey,
       ),
     );
@@ -201,13 +191,7 @@ class _Register1State extends State<Register1> {
                 child: FlatButton(
                   color: MyColors.sapphire,
                   onPressed: () {
-                    setState(
-                      () {
-                        mostrarMensaje = false;
-                      },
-                    );
-
-                    _verificarRegistro(context);
+                    _registryVerification(context);
                   },
                   child: Text(
                     'CONTINUAR',
@@ -363,13 +347,7 @@ class _Register1State extends State<Register1> {
                   child: FlatButton(
                     color: MyColors.sapphire,
                     onPressed: () {
-                      setState(
-                        () {
-                          mostrarMensaje = false;
-                        },
-                      );
-
-                      _verificarRegistro(context);
+                      _registryVerification(context);
                     },
                     child: Text(
                       'CONTINUAR',
@@ -378,7 +356,7 @@ class _Register1State extends State<Register1> {
                     ),
                     shape: RoundedRectangleBorder(
                         borderRadius: new BorderRadius.circular(22.0),
-                        side: BorderSide(color: MyColors.white)),
+                        side: BorderSide(color: MyColors.white),),
                   ),
                 ),
               ),
@@ -392,36 +370,33 @@ class _Register1State extends State<Register1> {
     );
   }
 
-  
-
-  _verificarRegistro(context) async {
-    pr =Methods.getPopUp(context);
-
-
-
+  _registryVerification(context) async {
+    pr = Methods.getPopUp(context);
     await pr.show();
     try {
       if (myController.text.length > 0) {
-        var userQuery = db
+        var userQuery = cloudStore
             .collection(Coleccion.registro_garita)
             .where(Campos.cod_garita, isEqualTo: myController.text)
             .limit(1);
 
         userQuery.getDocuments().then(
           (garita) {
+
             //VERIFICAR QUE EXISTA EL REGISTRO
             if (garita.documents.length > 0) {
               pr.hide();
               DocumentSnapshot garitaSnap = garita.documents[0];
               String documentIdGarita = garitaSnap.documentID;
+
               //VERIFICAR QUE NO ESTE OCUPADO
               String documentId = garitaSnap[Campos.document_id] != null
                   ? garitaSnap[Campos.document_id].toString()
                   : "";
 
               if (documentId.length == 0) {
+                
                 //REGISTRARLO
-
                 Garita garita = new Garita();
                 garita.codGarita = myController.text;
                 garita.documentId = documentIdGarita;
@@ -445,26 +420,14 @@ class _Register1State extends State<Register1> {
       }
     } catch (e) {
       pr.hide();
-      _error();
     }
   }
-
 
   _showMessage(String _mensaje, context) {
     setState(() {
       global.mensaje = _mensaje;
-      mostrarMensaje = true;
     });
     return Methods.getMessage(_mensaje, context);
-  }
-
-
-  _error() {
-    setState(
-      () {
-        mostrarMensaje = false;
-      },
-    );
   }
 
   _continuar(context) {
@@ -473,9 +436,4 @@ class _Register1State extends State<Register1> {
       MaterialPageRoute(builder: (context) => Register2()),
     );
   }
-
-
-
-
-  
 }

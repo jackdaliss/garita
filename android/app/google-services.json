@@ -8,9 +8,9 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1093920862477:android:3d17edfb59985accf28044",
+        "mobilesdk_app_id": "1:1093920862477:android:8758cc22d694e747f28044",
         "android_client_info": {
-          "package_name": "com.example.garitaa"
+          "package_name": "com.alert.garita"
         }
       },
       "oauth_client": [

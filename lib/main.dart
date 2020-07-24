@@ -25,7 +25,6 @@ class MyApp extends StatelessWidget {
 }
 
 class Home extends StatelessWidget {
-  
   //VERIFICA SI EXISTE CONEXION A INTERNET
   _testConnection(context) async {
     var hasConnection = await DataConnectionChecker()
@@ -67,7 +66,6 @@ class Home extends StatelessWidget {
 
   _getStart(context) {
     try {
-
       //LEE DE LA BASE DE DATOS LOCAL
       localDb.read(Campos.cod_garita).then(
         (data) {

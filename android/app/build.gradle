@@ -46,7 +46,7 @@ android {
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
         //He cambiado el applicationId de  com.example.garita a com.example.garitaa esto por temas de conflicto con la app de desarrollo
-        applicationId "com.alert.garita"
+        applicationId "com.alert.garita" 
         minSdkVersion 16
         targetSdkVersion 28
         versionCode flutterVersionCode.toInteger()

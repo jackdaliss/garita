@@ -72,7 +72,8 @@ class BaseCloudStore {
     try {
       Firestore.instance
           .collection('registro_garita')
-          .document('1dfuvVBx9vmOLhiP7slS')
+          .document(EntidadGarita().dameDocumentId())
+          //.document('1dfuvVBx9vmOLhiP7slS')
           .collection('alerta')
           .orderBy('codigo')
           .snapshots()
@@ -109,7 +110,7 @@ class BaseCloudStore {
     try {
       await baseCloudStore
           .collection(CatalogoColeccionesCloudStore().registro_garita)
-          .document('1dfuvVBx9vmOLhiP7slS')
+          .document(EntidadGarita().dameDocumentId())
           .collection(CatalogoColeccionesCloudStore().alerta)
           .document(_documentId)
           .updateData({CatalogoCamposAlerta().estado: _estado});

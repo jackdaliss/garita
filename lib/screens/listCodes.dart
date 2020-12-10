@@ -41,7 +41,7 @@ class _ListCodesState extends State<ListCodes> {
             'Alertas ' +
                 ((global.garita.nombreGarita.length != null)
                     ? global.garita.nombreGarita
-                    : SizedBox.shrink()),
+                    : ''),
             style: TextStyle(color: MyColors.white),
           )),
           automaticallyImplyLeading: false,
@@ -191,7 +191,7 @@ class _ListCodesState extends State<ListCodes> {
     );
 
     return Alert(
-      closeFunction: null,
+      closeFunction: () => null,
       context: context,
       type: AlertType.info,
       title: tituloFam,

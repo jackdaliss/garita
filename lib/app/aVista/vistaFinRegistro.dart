@@ -130,6 +130,7 @@ class VistaFinRegistro extends StatelessWidget {
         SizedBox(
           height: 15.0,
         ),
+        /*
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
@@ -148,7 +149,7 @@ class VistaFinRegistro extends StatelessWidget {
               child: Image(image: AssetImage("assets/images/reloj.png")),
             )*/
           ],
-        ),
+        ),*/
         SizedBox(
           height: 50.0,
         ),
@@ -159,7 +160,7 @@ class VistaFinRegistro extends StatelessWidget {
             children: <Widget>[
               _textoListo(),
               SizedBox(
-                height: 20.0,
+                height: 10.0,
               ),
               SizedBox(height: 20),
               FractionallySizedBox(
@@ -179,13 +180,14 @@ class VistaFinRegistro extends StatelessWidget {
               SizedBox(
                 height: 20.0,
               ),
+              _botonFinalizar(),
             ],
           ),
         ),
-        _botonFinalizar(),
-        SizedBox(
+//        _botonFinalizar(),
+        /*SizedBox(
             height: CatalogoPosicionControles()
-                .obtenerUbicacionBotonInferior(Get.context)),
+                .obtenerUbicacionBotonInferior(Get.context)),*/
       ],
     );
   }

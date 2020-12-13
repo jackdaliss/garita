@@ -1,0 +1,8 @@
+{
+    "terminal.integrated.commandsToSkipShell": [
+        "\"editor.rulers\": [140]"
+    ],
+    "editor.rulers": [
+    120
+    ]
+}

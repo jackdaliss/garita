@@ -25,17 +25,21 @@ dependencies:
   cupertino_icons: ^1.0.1
   rflutter_alert: ^1.0.2
   giffy_dialog: ^1.7.0
-  cloud_firestore: ^0.14.4
+  cloud_firestore: ^0.13.0+1
   shared_preferences: ^0.5.12+4
   progress_dialog: ^1.2.1
   data_connection_checker: ^0.3.4 
   flushbar: ^1.9.1
   dropdown_search: ^0.4.4
   get: ^3.4.6
+  flutter_launcher_icons: "^0.8.0"
   
   
   
-  
+flutter_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/icon/icon.png"
   
 
 dev_dependencies:

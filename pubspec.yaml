@@ -11,7 +11,7 @@ description: A new Flutter project.
 # In iOS, build-name is used as CFBundleShortVersionString while build-number used as CFBundleVersion.
 # Read more about iOS versioning at
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
-version: 1.0.0+2
+version: 1.0.0+3
 
 environment:
   sdk: ">=2.7.0 <3.0.0"
@@ -22,19 +22,32 @@ dependencies:
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
-  cupertino_icons: ^0.1.2
+  cupertino_icons: ^1.0.1
   rflutter_alert: ^1.0.2
   giffy_dialog: ^1.7.0
   cloud_firestore: ^0.13.0+1
-  shared_preferences: ^0.5.6+1
+  shared_preferences: ^0.5.12+4
   progress_dialog: ^1.2.1
-  data_connection_checker: ^0.3.4
+  data_connection_checker: ^0.3.4 
   flushbar: ^1.9.1
+  dropdown_search: ^0.4.4
+  get: ^3.4.6
+  flutter_launcher_icons: "^0.8.0"
   
+  
+  
+flutter_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/icon/icon.png"
+  # Despues de añadir la libreia para cambiar el icono de la app y agregar las 4 lineas que estan arriba de estto, se debe ejecutar lo siguiente
+  # flutter pub get
+  # flutter pub run flutter_launcher_icons:main
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  pedantic: ^1.9.0
 
 
 # For information on the generic Dart part of this file, see the
@@ -57,6 +70,21 @@ flutter:
     - assets/images/directo.png
     - assets/images/reloj.png
     - assets/images/nowifi.png
+    - assets/images/logo_alert_cuadrado.png
+    - assets/images/guardia.png
+    - assets/images/sin_conexion.png
+    - assets/images/llave.png
+    - assets/images/logo_alert_horizontal.png
+    - assets/images/logrado.png
+    - assets/images/p1.png
+    - assets/images/icono_taxi.png
+    - assets/images/icono_comida.png
+    - assets/images/icono_familia.png
+    - assets/images/icono_servicios.png
+    - assets/images/icono_amigo.png
+    - assets/images/icono_error.png
+    - assets/images/avatar_detalle.png
+    
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

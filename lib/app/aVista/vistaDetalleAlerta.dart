@@ -66,6 +66,7 @@ Column(
                   _botonCerrar(),
                   _avatarDetalle(),
                   _detalleFamilia(),
+                  _detalleDireccion(),
                   _detalleTipo(),
                   _detalleCodigo(),
                   botonesAccion()
@@ -140,6 +141,46 @@ Column(
                       id: 'datosAlerta',
                       builder: (_) => Text(
                         _.familia.isNotEmpty ? _.familia : 'Sin datos',
+                        style: TextStyle(
+                            color: CatalogoColores().azulMedio, fontSize: 30),
+                      ),
+                    )),
+              ),
+            )
+          ],
+        )
+      ],
+    );
+  }
+
+  _detalleDireccion() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Column(
+          children: [
+            Text(
+              'DIRECCIÓN',
+              style: TextStyle(
+                color: CatalogoColores().plomoLetra,
+                fontSize: 25,
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(15.0),
+              child: Container(
+                decoration: BoxDecoration(
+                    border: Border.all(color: CatalogoColores().azulMedio),
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(30),
+                    ),
+                    color: CatalogoColores().blanco),
+                child: Padding(
+                    padding: const EdgeInsets.all(15.0),
+                    child: GetBuilder<AdaptadorDetalleAlerta>(
+                      id: 'datosAlerta',
+                      builder: (_) => Text(
+                        _.familia.isNotEmpty ? _.direccion : 'Sin datos',
                         style: TextStyle(
                             color: CatalogoColores().azulMedio, fontSize: 30),
                       ),

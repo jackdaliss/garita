@@ -9,6 +9,7 @@ class AdaptadorDetalleAlerta extends GetxController {
   EntidadAlerta entidadAlerta;
 
   String familia = '';
+  String direccion = '';
   String tipo = '';
   String codigo = '';
   String documentIdResidente = '';
@@ -23,6 +24,7 @@ class AdaptadorDetalleAlerta extends GetxController {
   actualizarDatosAlerta() {
     try {
       if (entidadAlerta != null) {
+        direccion = entidadAlerta.direccion;
         familia = entidadAlerta.familia;
         tipo = entidadAlerta.tipo;
         codigo = entidadAlerta.codigo;

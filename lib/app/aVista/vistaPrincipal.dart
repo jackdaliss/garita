@@ -345,32 +345,32 @@ class VistaPrincipal extends StatelessWidget {
             Column(
               children: <Widget>[
                 Image(
-                  height: 50.0,
+                  height: 40.0,
                   image:
                       CatalogoTiposVisita().dameImagenTipoVisita(alerta.tipo),
                 ),
               ],
             ),
             SizedBox(
-              width: 20.0,
+              width: 10.0,
             ),
             Column(
               children: <Widget>[
                 Text(
                   alerta.codigo.toString(),
                   style: TextStyle(
-                      fontSize: 50.0, color: CatalogoColores().azulAlto),
+                      fontSize: 40.0, color: CatalogoColores().azulAlto),
                 ),
               ],
             ),
             SizedBox(
-              width: 20.0,
+              width: 10.0,
             ),
             Padding(
               padding: const EdgeInsets.only(left: 10),
               child: Text(
                 (alerta.tipo != null) ? alerta.tipo.toString() : '',
-                style: TextStyle(fontSize: 30.0, color: Colors.grey),
+                style: TextStyle(fontSize: 25.0, color: Colors.grey),
               ),
             ),
             Expanded(
